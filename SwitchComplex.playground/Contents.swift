@@ -1,6 +1,7 @@
 import UIKit
 
 // practice complex switch statement
+// value binding
 var statusCode: Int = 404
 var errorString: String = "The request failed with the error:"
 
@@ -23,4 +24,6 @@ case 500...505:
 case let unknownCode:
     errorString = "\(unknownCode) is not a known error code."
 }
+
+// use where to create a filter
 
