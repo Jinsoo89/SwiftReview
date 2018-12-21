@@ -28,4 +28,24 @@ while i < 6 {
 }
 
 // repeat-while loop
+var j = 10
+repeat {
+    print("hello")
+    j -= 2
+} while j > 0
 
+// use break
+var k = 16
+while k > 0 {
+    if k % 3 == 0 {
+        break
+    } else {
+        print(k)
+    }
+    k -= 1
+}
+
+// use stride
+for i in stride(from: 1, to: 10, by: 3) {
+    print(i)
+}
