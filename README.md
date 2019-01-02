@@ -15,6 +15,50 @@
 - Struct -> value type (get copied)
 - Class -> reference type (passing pointer)
 
+#### Class
+- Supports object-oriented design
+- Single inheritance of both functionality and data
+- Reference type (classes are stored in the heap and are passed via pointers)
+- Heap is automatically "kept clean" by Swift (via reference counting, not garbage collection)
+
+#### Struct
+- Value type (structs don't live in the heap and are passed by copying them
+- Very efficient "copy on write" is automatic in Swift
+- This copy on write behavior requires you to mark mutating methods
+- No inheritance (of data)
+- Mutability controoled via let
+- Supports functional programming design
+
+#### Memory Management
+
+Automatic Reference Counting (ARC)
+- Reference types (classes) are stored in the heap
+- It 'counts references' to each of them and when there are zero references, they get tossed
+- This is done automatically
+
+Influencing ARC
+- You can influence ARC by how you declare a reference-type var with these keywords
+- string
+- weak
+- unowned
+
+##### strong
+
+- strong is "normal" reference counting
+- as long as anyone, anywhere has a strong pointer to an instance, it will stay in the heap
+
+##### weak
+
+- weak means "if no one else is interested in this, then neither am I, set me to nil in that case"
+- weak only applies to Optional pointers to reference types
+- A week pointer will never keep an object in the heap
+
+##### unowned
+
+- unowned means "don't reference count this; crash if I'm wrong"
+- usually only to break memory cycles between objects
+
+
 #### Countable Range
 
 ```
@@ -236,3 +280,5 @@ switch x {
 	}
 }
 ```
+
+
