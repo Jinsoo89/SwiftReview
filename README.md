@@ -356,5 +356,18 @@ let thingsToMove: [Moveable] = [prius, square]
 thingToMove.changeOil()
 ```
 
+Another use of Protocols
 
+- Being a key in a dictionary
 
+```
+protocol Hashable: Equatable {
+    var hashValue: Int { get }
+}
+
+protocol Equatable {
+    static func ==(lhs: Self, rhs: Self) -> Bool
+}
+
+Dictionary<Key: Hashable, Value>
+```
