@@ -281,4 +281,80 @@ switch x {
 }
 ```
 
+#### Protocols
+
+- The protocol declaration (which properties and methods are in the protocol)
+- A class, struct or enum declaration that makes the claim to implement the protocol
+- The code in said class, struct, or enum (or extension) that implements the protocol
+- Similar to Interface in Java
+
+Declaration of the protocol itself
+
+```
+// Anyone that implements someProtocol must also implement
+// InheritedProtocol1 and 2
+// You must specify whether a property is get only or both get and set
+protocol someProtocol : InheritedProtocol1, InheritedProtocol2 {
+    var someProperty: Int { get set }
+    func aMethod(arg1: Double, anotherArgument: String) -> SomeType
+    mutating func changeIt()
+    init(arg: Type)
+}
+// Protocol is declaration only, not code
+// Any functions that are expected to mutate the receiver should be marked mutating
+```
+
+How an implementer says "I implement that protocol"
+
+```
+// super class first, then protocols
+class SomeClass : SuperclassOfSomeClass, SomeProtocol, AnotherProtocol {
+    // implementation of SomeClass here
+    // which must include all the properties and methods in SomeProtocol & AnotherProtocol
+
+    // In a class, inits must be marked required
+    required init(...)
+}
+
+struct SomeStruct : SomeProtocol, AnotherProtocol {
+    // implementation of SomeStruct here
+    // which must include all the properties and methods in SomeProtocol & AnotherProtocol
+}
+
+extension Something : SomeProtocol {
+    // implementation of SomeProtocol here
+    // no stored properties though
+}
+```
+
+Using protocols like the type that they are
+
+```
+protocol Moveable {
+    mutating func move(to point: CGPoint)
+}
+
+class Car : Moveable {
+    func move(to point: CGPoint) { ... }
+    func changeOil()
+}
+
+struct Shape : Moveable {
+    mutating func move(to point: CGPoint) { ... }
+    func draw()
+}
+
+let prius: Car = Car()
+let square: Shape = Shape()
+
+var thingToMove: Moveable = prius
+thingToMove.move(to: ...)
+thingToMove = square
+let thingsToMove: [Moveable] = [prius, square]
+
+// this is illegal
+thingToMove.changeOil()
+```
+
+
 
