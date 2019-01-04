@@ -371,3 +371,49 @@ protocol Equatable {
 
 Dictionary<Key: Hashable, Value>
 ```
+
+#### Function Types
+
+```
+// type function that takes a Double and returns a Double
+var operation: (Double) -> Double
+// sqrt is a function that takes a Double and return a Double
+operation = sqrt
+// call this function using this syntax
+let result = operation(4.0) // result will be 2.0
+```
+
+##### Closures
+
+Arguments to methods, many times a method wants to know "what to do"
+and providing a function tells it what to do
+
+```
+var operation: (Double) -> Double
+operation = { -$0 }
+let result = operation(4.0) // result will be -4.0
+```
+
+another example
+
+```
+let primes = [2.0, 3.0, 5.0, 7.0]
+let negativePrimes = primes.map({ -$0 }) // [-2.0, -3.0, -5.0, -7.0]
+let invertedPrimes = primes.map() { 1.0/$0 } // [0.5, 0.333, 0.2 ...]
+let primeStrings = primes.map { String($0) } // ["2.0", "3.0", "5.0", ...]
+```
+
+Property initialization - You can also execute a closure to do initialization of a property
+
+```
+var someProperty: Type = {
+    // construct the value of someProperty here
+    return <the constructed value>
+}()
+```
+
+
+
+
+
+
