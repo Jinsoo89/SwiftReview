@@ -412,6 +412,39 @@ var someProperty: Type = {
 }()
 ```
 
+#### Thrown Errors
+
+In Swift, methods can throw errors
+
+```
+// you will always know that can throw because they'll have the keyword
+// 'throws' on the end
+func save() throws
+```
+
+do - catch statement
+
+```
+do {
+    try context.save()
+} catch let error {
+    // error will be something that implements the Error protocol,
+    // usually these are enums that have associated values to get error details
+    throw error
+}
+```
+
+will crash your program if save() actually throws an error
+
+```
+try! context.save()
+```
+
+you can conditionally try, turning the return into an Optional (which will be nil if fail)
+
+```
+let x = try? errorProneFunctionThatReturnsAnInt()
+```
 
 
 
