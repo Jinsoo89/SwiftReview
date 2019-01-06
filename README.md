@@ -446,7 +446,31 @@ you can conditionally try, turning the return into an Optional (which will be ni
 let x = try? errorProneFunctionThatReturnsAnInt()
 ```
 
+#### View Coordinate System
 
+- Origin is upper left
+- Units are points, not pixels
+- The boundaries of where drawing happens
+```
+var bounds: CGRect // a view's internal drawing space's origin and size
+```
+- Where is the UIView?
+```
+var center: CGPoint // the center of a UIView in its superview's coordinate system
+var frame: CGRect // the rect containing a UIView in its superview's coordinate system
 
+- Creating Views
+
+Mostly, views are created via storyboard, otherwise
+```
+let newView = UIView(frame: myViewFrame)
+// or
+let newView = UIView() // frame will be CGRect.zero
+```
+```
+let labelRect = CGRect(x: 20, y: 20, width: 100, height: 50)
+let label = UILabel(frame: labelRect) // UILabel is a subclass of UIView
+label.text = "Hello"
+```
 
 
